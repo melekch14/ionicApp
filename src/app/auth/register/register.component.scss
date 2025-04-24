@@ -19,21 +19,26 @@
 }
 
 .auth-container {
-  width: 100%;
-  max-width: 500px;
-  height: 100%;
+  max-width: 100vw;
   padding: 2rem;
   background-color: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-y: auto;
+  height: 100vh;
+  /* Mobile first - full height */
+  min-height: 100vh;
   
-  @media (min-width: 768px) {
-    max-height: 90vh;
-    border-radius: 16px;
-    padding: 3rem;
+  /* Special cases for landscape mobile */
+  @media (max-width: 767px) and (orientation: landscape) {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    justify-content: flex-start;
+  }
+  
+  /* Very small devices */
+  @media (max-width: 350px) {
+    padding: 1.5rem;
   }
 }
 
@@ -76,7 +81,7 @@
   font-weight: 400;
 }
 
-.social-auth {
+/*.social-auth {
   margin-bottom: 1.5rem;
   
   .social-button {
@@ -121,6 +126,7 @@
     margin-left: 1rem;
   }
 }
+*/
 
 .auth-form {
   width: 100%;

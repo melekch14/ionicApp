@@ -9,17 +9,6 @@
       <p class="app-subtitle">Create your secure account</p>
     </div>
 
-    <div class="social-auth">
-      <ion-button class="social-button google" expand="block" fill="clear">
-        <ion-icon slot="start" name="logo-google"></ion-icon>
-        Sign up with Google
-      </ion-button>
-    </div>
-
-    <div class="divider">
-      <span>Sign up with email</span>
-    </div>
-
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
       <div class="form-group floating-label">
         <ion-item class="custom-input">
@@ -97,7 +86,7 @@
         type="submit" 
         expand="block" 
         class="auth-button ripple"
-        [disabled]="!acceptTerms">
+        >
         Create Account
       </ion-button>
       
