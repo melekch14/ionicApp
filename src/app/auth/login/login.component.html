@@ -1,0 +1,78 @@
+<ion-content class="auth-content">
+  <div class="auth-background"></div>
+  <div class="auth-container">
+    <div class="logo-container">
+      <div class="logo-icon">
+        <ion-icon name="finger-print-outline"></ion-icon>
+      </div>
+      <h1 class="app-title">iAuth</h1>
+      <p class="app-subtitle">Welcome back</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <div class="form-group floating-label">
+        <ion-item class="custom-input">
+          <ion-label></ion-label>
+          <ion-input 
+            type="email" 
+            formControlName="email"
+            placeholder="Enter your email"
+            [class.invalid]="(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) || (submitAttempted && loginForm.get('email')?.invalid)">
+          </ion-input>
+        </ion-item>
+        <div class="error-message" *ngIf="(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) || (submitAttempted && loginForm.get('email')?.invalid)">
+          <ion-icon name="alert-circle-outline"></ion-icon>
+          <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</span>
+          <span *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email</span>
+        </div>
+      </div>
+
+      <div class="form-group floating-label">
+        <ion-item class="custom-input">
+          <ion-label></ion-label>
+          <ion-input 
+            [type]="showPassword ? 'text' : 'password'" 
+            formControlName="password"
+            placeholder="Enter your password"
+            [class.invalid]="(loginForm.get('password')?.invalid && loginForm.get('password')?.touched) || (submitAttempted && loginForm.get('password')?.invalid)">
+          </ion-input>
+          <ion-button fill="clear" slot="end" class="password-toggle" (click)="togglePasswordVisibility()">
+            <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <div class="error-message" *ngIf="(loginForm.get('password')?.invalid && loginForm.get('password')?.touched) || (submitAttempted && loginForm.get('password')?.invalid)">
+          <ion-icon name="alert-circle-outline"></ion-icon>
+          <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</span>
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</span>
+        </div>
+      </div>
+      
+      <div class="forgot-password">
+        <a (click)="goToForgotPassword()">Forgot Password?</a>
+      </div>
+      
+      <ion-button 
+        type="submit" 
+        expand="block" 
+        class="auth-button ripple">
+        Log In
+      </ion-button>
+      
+      <div class="divider">
+        <span>or</span>
+      </div>
+      
+      <ion-button 
+        class="social-button google" 
+        expand="block" 
+        fill="clear">
+        <ion-icon slot="start" name="logo-google"></ion-icon>
+        Continue with Google
+      </ion-button>
+      
+      <div class="auth-footer">
+        <p>Don't have an account? <a (click)="goToRegister()">Sign Up</a></p>
+      </div>
+    </form>
+  </div>
+</ion-content>

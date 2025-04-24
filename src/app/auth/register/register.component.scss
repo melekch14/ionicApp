@@ -1,0 +1,324 @@
+.auth-content {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+  z-index: -1;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  
+  @media (min-width: 768px) {
+    max-height: 90vh;
+    border-radius: 16px;
+    padding: 3rem;
+  }
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  
+  .logo-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(110, 142, 251, 0.4);
+    
+    ion-icon {
+      font-size: 3rem;
+      color: white;
+    }
+  }
+}
+
+.app-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #6e8efb, #a777e3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-subtitle {
+  font-size: 1.1rem;
+  color: #718096;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.social-auth {
+  margin-bottom: 1.5rem;
+  
+  .social-button {
+    --border-radius: 12px;
+    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: 50px;
+    font-weight: 500;
+    --background: white;
+    --color: #4a5568;
+    
+    ion-icon {
+      font-size: 1.5rem;
+      margin-right: 10px;
+      color: #DB4437;
+    }
+    
+    &:hover {
+      --box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: #a0aec0;
+  font-size: 0.9rem;
+  
+  &::before, &::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  &::before {
+    margin-right: 1rem;
+  }
+  
+  &::after {
+    margin-left: 1rem;
+  }
+}
+
+.auth-form {
+  width: 100%;
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  ion-item {
+    --background: white;
+    --border-color: #e2e8f0;
+    --border-radius: 12px;
+    --highlight-color-focused: #6e8efb;
+    --highlight-height: 2px;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    &:focus-within {
+      box-shadow: 0 4px 16px rgba(110, 142, 251, 0.2);
+      --border-color: #6e8efb;
+    }
+    
+    ion-label {
+      color: #4a5568;
+      font-weight: 500;
+    }
+    
+    ion-input {
+      --padding-start: 16px;
+      --padding-end: 16px;
+      --color: #2d3748;
+    }
+  }
+
+  .password-toggle {
+    --color: #a0aec0;
+    &:hover {
+      --color: #6e8efb;
+    }
+  }
+
+  .error-message {
+    color: var(--ion-color-danger);
+    font-size: 0.85rem;
+    margin: 0.25rem 0 0 0.5rem;
+    display: flex;
+    align-items: center;
+    
+    ion-icon {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .terms-container {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+    color: #718096;
+    font-size: 0.9rem;
+    
+    ion-checkbox {
+      margin-right: 12px;
+      --size: 18px;
+      --border-color: #cbd5e0;
+      --border-color-checked: #6e8efb;
+      --background-checked: #6e8efb;
+    }
+    
+    a {
+      color: #6e8efb;
+      font-weight: 500;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .auth-button {
+    --background: linear-gradient(135deg, #6e8efb, #a777e3);
+    --border-radius: 12px;
+    --box-shadow: 0 4px 16px rgba(110, 142, 251, 0.3);
+    height: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    margin: 1.5rem 0;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      --box-shadow: 0 6px 20px rgba(110, 142, 251, 0.4);
+      transform: translateY(-2px);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+    
+    &[disabled] {
+      opacity: 0.7;
+      transform: none !important;
+    }
+  }
+
+  .auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #718096;
+    
+    a {
+      color: #6e8efb;
+      font-weight: 600;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.floating-label {
+  ion-item {
+    ion-label {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      color: #a0aec0;
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+    
+    ion-input:focus + ion-label,
+    ion-input:not(:placeholder-shown) + ion-label {
+      top: -8px;
+      left: 12px;
+      font-size: 0.8rem;
+      color: #6e8efb;
+      background: white;
+      padding: 0 4px;
+    }
+  }
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+  
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+  }
+  
+  &:active:after {
+    transform: scale(0, 0);
+    opacity: 0.3;
+    transition: 0s;
+  }
+}
+
+/* Animation for form elements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-group, .social-auth, .divider, .terms-container, .auth-button, .auth-footer {
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.form-group { animation-delay: 0.1s; }
+.social-auth { animation-delay: 0.2s; }
+.divider { animation-delay: 0.3s; }
+.terms-container { animation-delay: 0.4s; }
+.auth-button { animation-delay: 0.5s; }
+.auth-footer { animation-delay: 0.6s; }
