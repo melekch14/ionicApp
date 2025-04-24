@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    HttpClientModule
   ]
 })
 export class AuthModule { }

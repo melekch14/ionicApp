@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -19,15 +20,16 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private animationCtrl: AnimationController
+    private animationCtrl: AnimationController,
+    private authService: AuthService
   ) {
     this.registerForm = this.formBuilder.group({
       fullName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]]
-    }, { 
-      validators: this.passwordMatchValidator 
+    }, {
+      validators: this.passwordMatchValidator
     });
   }
 
@@ -52,7 +54,7 @@ export class RegisterComponent implements OnInit {
   passwordMatchValidator(form: FormGroup) {
     const password = form.get('password')?.value;
     const confirmPassword = form.get('confirmPassword')?.value;
-    
+
     return password === confirmPassword ? null : { mismatch: true };
   }
 
@@ -66,10 +68,22 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitAttempted = true;
-    
-    if (this.registerForm.valid && this.acceptTerms) {
+
+    if (this.registerForm.valid) {
       console.log('Register form submitted', this.registerForm.value);
-      this.showSuccessAnimation();
+      const { fullName, email, password } = this.registerForm.value;
+
+      this.authService.register({ fullName, email, password }).subscribe({
+        next: (res) => {
+          console.log('Registration success', res);
+          this.showSuccessAnimation();
+        },
+        error: (err) => {
+          console.error('Registration failed', err);
+          console.log("error");
+        }
+      });
+
     }
   }
 
@@ -88,7 +102,7 @@ export class RegisterComponent implements OnInit {
       .afterClearStyles(['transform']);
 
     buttonAnimation.play();
-    
+
     setTimeout(() => {
       this.router.navigate(['/login']);
     }, 1000);
